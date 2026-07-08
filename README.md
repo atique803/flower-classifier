@@ -15,23 +15,47 @@ The project is a pipeline of four scripts, each one building on the output of th
 | 3. Train | [`src/03_train.py`](src/03_train.py) | Trains two different classifiers on the training set: K-Nearest Neighbors and a Decision Tree. Both are saved to `data/` so they don't need retraining to evaluate. |
 | 4. Evaluate | [`src/04_evaluate.py`](src/04_evaluate.py) | Runs both trained models on the held-out test set (data they've never seen) and reports accuracy, a confusion matrix, and a per-species precision/recall breakdown. |
 
-## Setup
+## How to run
 
+**1. Clone the repo**
+
+```bash
+git clone https://github.com/atique803/flower-classifier.git
+cd flower-classifier
+```
+
+**2. Create and activate a virtual environment**
+
+Windows:
 ```bash
 python -m venv venv
-venv\Scripts\pip install -r requirements.txt
+venv\Scripts\activate
 ```
 
-## Usage
+macOS / Linux:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-Run the scripts in order:
+**3. Install dependencies**
 
 ```bash
-venv\Scripts\python src\01_load_and_explore.py
-venv\Scripts\python src\02_split.py
-venv\Scripts\python src\03_train.py
-venv\Scripts\python src\04_evaluate.py
+pip install -r requirements.txt
 ```
+
+**4. Run the pipeline, in order**
+
+Each script reads the output of the one before it, so run them 1 → 4:
+
+```bash
+python src/01_load_and_explore.py
+python src/02_split.py
+python src/03_train.py
+python src/04_evaluate.py
+```
+
+Step 4 prints each model's accuracy, confusion matrix, and classification report to the terminal — that's the final output, no separate viewer needed.
 
 ## Results
 
